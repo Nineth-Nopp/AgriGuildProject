@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Analyse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <style>
+        	.nav-link{
+            color: rgb(255, 255, 255);
+        }
+        
+    </style>
+    <script>
+        $(document).ready(function(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['land for plant', 'water', 'land for livestock','living land'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 13],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(55,255,72,0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(55,255,72,1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            $("#logo").click(function(){
+                location.replace("./index.html")
+            });
+        })
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md sticky-top" style="background-color: #45aa2c">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#" id="logo"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+    </nav>
+    <div class="container">
+        <p></p>
+        <div class=""  style="text-align: center;">
+            <input class="col-5" type="text" name="" id="LandArea" placeholder="AREA" style="text-align: center;">
+
+            <div class="form-check">
+                <div class="row">
+              <label class="form-check-label col-3">
+                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                water
+              </label>
+              <label class="form-check-label col-3" >
+                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                Land of Livestock
+              </label>
+              <label class="form-check-label col-3">
+                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                Land of Plant
+              </label>
+              <label class="form-check-label col-3">
+                <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                Living Land
+              </label>
+            </div>
+            </div>
+            <div class="alert alert-primary my-4" role="alert">
+                <strong>Only Calculate for view how much area in each part of agriculture</strong>
+            </div>
+
+            <button class="btn btn-success mb-4">Process</button>
+
+            <hr class="my-2">
+            <canvas id="myChart" width="100" height="100"></canvas>
+        </div>
+    </div>
+</body>
+
+</html>

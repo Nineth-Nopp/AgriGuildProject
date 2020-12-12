@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Analyse</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <style>
+        .nav-link{
+            color: rgb(255, 255, 255);
+        }
+        body {
+            background-color: #9ac48e;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['land for plant', 'water', 'land for livestock'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 13],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            $("#btnOK").click(function(){
+                location.replace("./index.html")
+            });
+            $("#logo").click(function(){
+                location.replace("./index.html")
+            });
+
+        })
+    </script>
+
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md sticky-top" style="background-color: #45aa2c">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			</div>
+		</div>
+	</nav>
+    <p></p>
+    <div class="container">
+        <div class="jumbotron" style="text-align: center;">
+            <h1 class="display-3">Land Analyse for your land.</h1>
+            <p class="lead" id="totalArea">Total Area : --------</p>
+            <hr class="my-2">
+            <canvas id="myChart" width="100" height="100"></canvas>
+            <p></p>
+            <div style="text-align: right;">
+             <button id="btnOK" class="btn btn-success brn-lg">OK</button>
+            </div>
+           
+        </div>
+        
+    </div>
+    
+
+</body>
+
+</html>

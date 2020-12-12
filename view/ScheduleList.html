@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <style>
+     .nav-link{
+            color: rgb(255, 255, 255);
+        }
+        body {
+            background-color: #9ac48e;
+        }
+    </style>
+
+    <script>
+        $("#document").ready(function () {
+            var cardTemp = '';
+
+            const info = [
+                { "name": 'Last Jungle', "info": 'ข้าวบาเลย์' },
+                { "name": 'หลังบ้านไผ่', "info": "วัว" }
+            ]
+
+            for (let i = 0; i < info.length; i++) {
+                cardTemp = cardTemp + `<div class="card col-3 my-2 ml-2" "  ><div class="card-body">`
+                cardTemp = cardTemp + `<h4 class="card-title">${info[i].name}</h4><p class="card-text">${info[i].info}</p></div><button class="btn btn-warning" id='btnview${i}' >VIEW</button></div>`
+            }
+            $("#scherduleList").html(cardTemp);
+            $("#logo").click(function(){
+		        location.replace("./index.html")
+		});
+    });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md" style="background-color: #45aa2c">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+    <div class="container">
+        <hr>
+        <h1>SCHEDULE</h1>
+        <hr>
+        <div class=""></div>
+        <div id="scherduleList" class="row"></div>
+        
+    </div>
+</body>
+
+</html>

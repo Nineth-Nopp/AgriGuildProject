@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Guilding</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css ">
+    <style>
+        input[type=text] {
+            text-align: center;
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        .nav-link{
+            color: rgb(255, 255, 255);
+        }
+
+        body {
+            background-color: #9ac48e;
+        }
+       
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("#btnCancel").click(function(){
+                location.replace("./index.html")
+            });
+            $("btnProcess").click(function(){
+                location.replace("./Schedal confirm.html")
+            });
+            $("#logo").click(function(){
+					location.replace("./index.html")
+				});
+				$("#home").click(function(){
+					location.replace("./index.html")
+				});
+        });
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md" style="background-color: #45aa2c">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+    <p></p>
+    <div class="container" style="text-align: center;">
+        <div class="jumbotron">
+            <h1 class="display-3">Agriculture Guilding</h1>
+            <p class="lead">Input your budget and land to see your Guilde !</p>
+            <hr class="my-3">
+            <input type="text" clss="form-control" placeholder="Budget(bath)" name="" id="txtBudget">
+            <div class="alert alert-danger" role="alert" hidden>
+                <strong id="alertBudget">Wrong input</strong>
+            </div>
+            <input type="text" clss="form-control " placeholder="Acre" name="" id="txtAcre">
+            <div class="alert alert-danger" role="alert" hidden>
+                <strong id="alertAcre">Wrong input</strong>
+            </div>
+            <hr class="my-3">
+            <button class="btn btn-success mr-4 btn-lg">Crops</button> 
+            or
+            <button class="btn btn-warning ml-4 btn-lg">Livestock</button>
+        </div>
+        <div class="col h1" id="ListOfData">
+
+            <div style="text-align:right;">
+                <button class="btn btn-secondary btn-lg" id="btnCancel"> Cancel</button>
+                <button class="btn btn-primary btn-lg" id="btnProcess"> Process</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

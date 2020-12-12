@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+	<style>
+		img {
+			width: 100%;
+			height: 100%;
+		}
+		.nav-link{
+            color: rgb(255, 255, 255);
+        }
+		#info-web{
+			color: rgb(255, 255, 255);
+		}
+		#text {
+			font-size: 20px;
+			color: rgb(255, 255, 255);
+			text-align: center;
+		}
+		#text_head{
+			font-size: 35px;
+			color: rgb(255, 255, 255);
+			text-align: center;
+
+		}
+		.number {
+			color: rgb(255, 255, 255);
+			font-size: 25px;
+			text-align: center;
+		}
+		#txtfeatures {
+			color: rgb(255, 255, 255);
+		}
+		body {
+			background-color: #9ac48e;
+		}
+		.card-text {
+			height: 50px;
+		}
+
+	</style>
+
+	<script>
+			 $(document).ready(function(){
+				$("#btnlog").click(function(){
+					location.replace("./Login.html")
+				});
+				$("#btnre").click(function(){
+					location.replace("./Register.html")
+				});
+				$("#calen").click(function(){
+					location.replace("./Scheduleconfirm.html")
+				});
+				$("#costcal").click(function(){
+					location.replace("./Guilding.html")
+				});
+				$("#logo").click(function(){
+					location.replace("./index.html")
+				});
+				$("#home").click(function(){
+					location.replace("./index.html")
+				});
+				$("#mi").click(function(){
+					location.replace("./MoreInformation.html")
+				});
+				$("#space").click(function(){
+					location.replace("./LandAnalyse.html")
+				});
+			});
+	</script>
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-md sticky-top" style="background-color: #45aa2c">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="#" id="home">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Team</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Services</a>
+					   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="#" id="costcal">Cost calculation</a> 
+							<a class="dropdown-item" href="#" id="space">Space management</a> 
+							<a class="dropdown-item" href="#" id="calen"> Calendar</a>
+							<a class="dropdown-item" href="#" id="mi">More information</a>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Contract</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-xs-12">
+				<a href="#"><button type="button" class="btn btn-warning" id="btnlog">Login</button></a>
+				<a href="#"><button type="button" class="btn btn-outline-warning" id="btnre">Register</button></a>
+			</div>
+		</div>
+	</nav>
+	<!--- Image Slider -->
+	<div id="slides" class="carousel slide" data-ride="carousel">
+		<ul class="carousel-indicators">
+			<li data-target="#slides" data-slide-to="0" class="active"></li>
+			<li data-target="#slides" data-slide-to="1"></li>
+			<li data-target="#slides" data-slide-to="2"></li>
+		</ul>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="../picture/6.jpg">
+				<div class="carousel-caption">
+					<h1 class="display-2">Agricultrue Guide</h1>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="../picture/7.jpg">
+			</div>
+			<div class="carousel-item">
+				<img src="../picture/9.jpg">
+			</div>
+		</div>
+	</div>	
+	<div class="container-fluid">
+		<div class="row jumbotron" style="background-color: #45aa2c">
+			<div class="col-xs-12 col-sm-12 col-md-9 ">
+				<p class="lead" id="info-web">A computational website that can instantly calculate expenses and revenues. Proper land management for agriculture and animal husbandry Calendar to help design time management in agriculture and livestock.</p>
+			</div>
+		</div>
+	</div>
+
+	<!--- Features -->
+	<div class="container-fluid padding" style="background-color:#9ac48e">
+	<h1 class="display-4" id="txtfeatures">Features</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="card">
+							<img class="card-img-top" alt="Bootstrap Thumbnail First" src="../picture/calculator-basic.png" />
+							<div class="card-block">
+								<h2 class="card-title">
+									Cost calculation
+								</h2>
+								<p class="card-text">
+									A calculation system that will be able to calculate expenses and income immediately.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<img class="card-img-top" alt="Bootstrap Thumbnail Second" src="../picture/Area.JPG" />
+							<div class="card-block">
+								<h2 class="card-title">
+									Space management
+								</h2>
+								<p class="card-text">
+									Area management systems suitable for agriculture and livestock.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<img class="card-img-top" alt="Bootstrap Thumbnail Third" src="../picture/Calender.jpg" />
+							<div class="card-block">
+								<h2 class="card-title">
+									Calendar
+								</h2>
+								<p class="card-text">
+									A calendar that helps design time management in agriculture and livestock husbandry.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card">
+							<img class="card-img-top" alt="Bootstrap Thumbnail Fouth" src="../picture/information.jpg" />
+							<div class="card-block">
+								<h2 class="card-title">
+									More information
+								</h2>
+								<p class="card-text">
+									For view more information.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<p></p>
+
+<!--- About us -->
+	<div class="container-fluid padding">
+				<h1 class="display-4">Team</h1>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="card">
+										<img class="card-img-top" src="../picture/c2.png" />
+										<div class="card-block">
+											<h2 class="card-text">
+												Noppanan Khamduang
+											</h2>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="card">
+										<img class="card-img-top" src="../picture/c1.png" />
+										<div class="card-block">
+											<h2 class="card-text">
+												Paramet Pechapo
+											</h2>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="card">
+										<img class="card-img-top" src="../picture/c3.jpg" />
+										<div class="card-block">
+											<h2 class="card-text">
+												Sahapol Polyiam
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+	</div>
+	<p></p>
+
+	<!--- Footer area-->
+	<div class="container-fluid "style="background-color: #45aa2c">
+		<footer class="footer-area">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-4">
+
+						</div>
+						<div class="col-md-4">
+						<p></p>
+							<h4 id="text_head"><i class="fa fa-phone fa"></i> Contact Us</h4>
+							<p id="text">
+							333 Mae Fah Luang University, Thasud Mueang, Chiang Rai 57100
+							</p>
+							<p class="number">
+							<i class="fa fa-phone fa"></i> 012-6532-568-9746 <br>
+							<i class="fa fa-phone fa"></i> 012-6532-569-9748
+							</p>
+							
+						</div>
+		</div>
+</div>
+	</footer>
+</div>
+</body>
+</html>
+				

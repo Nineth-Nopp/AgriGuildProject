@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css ">
+    <script>
+        $(document).ready(function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                dayMaxEventRows: true,
+
+                events: [{
+                    id: 'E01',
+                    title: 'Cows ',
+                    start: '2020-11-01',
+                    end: '2020-11-25',
+
+                    eventContent: { html: '<i>https://www.youtube.com/</i>' }
+                }, {
+                    id: 'E02',
+                    title: 'Watering the Corns',
+                    start: '2020-11-06',
+                    end: '2020-11-09',
+                    color: 'pink',
+                }],
+                eventClick: function (info) {
+                    $("#modalEventBody").html(`You select Event ${info.event.title} at ${info.event.startStr}and you should finished before ${info.event.endStr}`)
+                    $("#modalEvent").modal("toggle");
+                },
+                select: function (info) {
+                    $("#modalDayBody").html(`You clicking at ${info.view.title}`)
+                    $("#modalDay").modal("toggle");
+                },
+            });
+            calendar.render();
+
+
+            $("#btnNext").click(function () {
+               location.replace("./landresult.html")
+                // calendar.addEvent();
+            });
+            $("#btnBack").click(function () {
+               location.replace("./Guilding.html")
+            });
+            $("#logo").click(function () {
+               location.replace("./index.html")
+            });
+        });
+    </script>
+<style>
+    .nav-link{
+            color: rgb(255, 255, 255);
+        }  
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md sticky-top" style="background-color: #45aa2c">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#" id="logo"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+    </nav>
+    <div class="container-fluid row my-5">
+        <div class="col-2 col-sm-1"></div><button class="btn btn-warning btn-lg col-1" id="btnBack">BACK</button>
+    </div>
+    <div class="container">
+        <div class="h3">Schedule Name :</div>
+        <!-- name of plant or livestock -->
+        <div class="" id="lbName"></div>
+        <div id='calendar'></div>
+    </div>
+    <!-- datatable list -->
+    <div id="DataTableAdd" ></div>
+
+    <!-- next button -->
+    <div class="row container-fluid">
+        <div class="col-9 col-sm-10"></div><button class="btn btn-success btn-lg col-1 my-5" id="btnNext">Next</button>
+    </div>
+    <!-- modalFor Show in calendar -->
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true" id="modalEvent">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header" id="madalHeader">
+                    <h4 class="modal-title">event</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" id="modalEventBody"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true" id="modalDay">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header" id="madalHeader">
+                    <h4 class="modal-title">day</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" id="modalDayBody"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
