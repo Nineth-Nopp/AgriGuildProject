@@ -25,6 +25,28 @@
            $("#logo").click(function(){
                    location.replace("./index.html")
            });
+           $("#btnconfirm").click(function(){
+            const name = $("#txtname").val();
+            const lastname = $("#txtlastname").val();
+            const username = $("txtusername").val();
+            const password = $("#txtpassword").val();
+            const confirmpass = $("#txtconfirm").val();
+            const email = $("#txtemail").val();
+            const phone = $("#txtphone").val();
+            
+            $.ajax({
+            type: "POST",
+            url: "/register",
+            data: {"name":name , "lastname":lastname, "username": username, "password": password, "confirm_password":confirmpass, "email":email, "phone": phone} ,
+            
+            success: function (response) {
+                location.replace(response);               
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+});
+        });
         });
    </script>
 </head>
@@ -49,46 +71,46 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="name"> 
+                            <input type="text" class="form-control" placeholder="name" id="txtname"> 
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="lastname"> 
+                            <input type="text" class="form-control" placeholder="lastname" id="txtlastname"> 
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-users fa"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="username"> 
+                            <input type="text" class="form-control" placeholder="username" id="txtusername"> 
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-lock fa-"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="password">
+                            <input type="password" class="form-control" placeholder="password" id="txtpassword">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-lock fa"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="confirm password">
+                            <input type="password" class="form-control" placeholder="confirm password" id="txtconfirm">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-envelope fa"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" class="form-control" placeholder="Email" id="txtemail">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-phone fa"></i></span>
                             </div>
-                            <input type="tel" class="form-control" placeholder="Phone number">
+                            <input type="tel" class="form-control" placeholder="Phone number" id="txtphone">
                         </div>
                         <div class="form-group">
-                            <input type="button" value="confirm" class="btn float-right confirm_btn">
+                            <input type="button" value="confirm" class="btn float-right confirm_btn" id="btnconfirm">
                         </div>
                     </form>
                 </div>
