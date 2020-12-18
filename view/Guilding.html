@@ -42,7 +42,29 @@
 				});
 				$("#home").click(function(){
 					location.replace("./index.html")
-				});
+                });
+                $("#crop").click(function(){
+					
+                });
+                $("#livestock").click(function(){
+					
+                });
+                $("#btnProcess").click(function(){
+                    const budget = $("#txtBudget").val();
+                    const acre = $("#txtAcre").val
+                    $.ajax({
+                        type: "POST",
+                        url: "/guilding",
+                        data: {"budget":budget , "acre":acre} ,
+                        success: function (response) {
+                            location.replace(response);               
+                        },
+                        error: function (xhr) {
+                            alert(xhr.responseText);
+                         }
+});
+                });
+
         });
     </script>
 
@@ -63,21 +85,20 @@
             <h1 class="display-3">Agriculture Guilding</h1>
             <p class="lead">Input your budget and land to see your Guilde !</p>
             <hr class="my-3">
-            <input type="text" clss="form-control" placeholder="Budget(bath)" name="" id="txtBudget">
+            <input type="text" clss="form-control" placeholder="Budget(bath)" id="txtBudget">
             <div class="alert alert-danger" role="alert" hidden>
                 <strong id="alertBudget">Wrong input</strong>
             </div>
-            <input type="text" clss="form-control " placeholder="Acre" name="" id="txtAcre">
+            <input type="text" clss="form-control " placeholder="Acre" id="txtAcre">
             <div class="alert alert-danger" role="alert" hidden>
                 <strong id="alertAcre">Wrong input</strong>
             </div>
-            <hr class="my-3">
-            <button class="btn btn-success mr-4 btn-lg">Crops</button> 
+            <hr class="my-3"> 
+            <button class="btn btn-success mr-4 btn-lg" id="crop">Crops</button> 
             or
-            <button class="btn btn-warning ml-4 btn-lg">Livestock</button>
+            <button class="btn btn-warning ml-4 btn-lg" id="livestock">Livestock</button>
         </div>
         <div class="col h1" id="ListOfData">
-
             <div style="text-align:right;">
                 <button class="btn btn-secondary btn-lg" id="btnCancel"> Cancel</button>
                 <button class="btn btn-primary btn-lg" id="btnProcess"> Process</button>
