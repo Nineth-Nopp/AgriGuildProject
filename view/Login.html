@@ -17,7 +17,7 @@
 <script>
     $(document).ready(function(){
         $("#logo").click(function(){
-		    location.replace("./index.html")
+		    location.replace("/index.html")
 		});
         $("#re").click(function(){
 		    location.replace("./Register.html")
@@ -25,17 +25,23 @@
         $("#forget").click(function(){
 		    location.replace("./recovery_PASSWORD.html")
         });
-
-        $.ajax({
+        $("#btn_login").click(function(){
+            const username =  $("#txtusername").val();
+            const password = $("#txtpassword").val();  
+            
+            $.ajax({
             type: "POST",
-            url: "url",
-            data: "data",
-            dataType: "dataType",
+            url: "/login",
+            data: {"username":username , "password":password} ,
+            
             success: function (response) {
-                
+                location.replace(response);               
+            },
+            error: function (xhr) {
+                alert("Your password incorrect!!");
             }
+});
         });
-        
     });
 </script>
 <body>
@@ -59,20 +65,20 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="username">
+                                <input type="text" class="form-control" placeholder="username" id="txtusername">
                                 
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock fa"></i></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="password">
+                                <input type="password" class="form-control" placeholder="password" id="txtpassword">
                             </div>
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-right login_btn">
+                                <input type="button" value="Login" class="btn float-right login_btn" id="btn_login">
                             </div>
                         </form>
                     </div>
