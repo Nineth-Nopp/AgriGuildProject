@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/signUp", function(req, res) {
+app.post("/register", function(req, res) {
     const username = req.body.username;
     const password = req.body.password;
  
@@ -72,6 +72,71 @@ app.post("/login",function(req,res){
             }
         }
         
+    });
+});
+
+//------------------ json call for datatable ---------------------
+
+app.get("/users", function (req, res) {
+    const sql = "SELECT id, username, role FROM user";
+    con.query(sql, function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+ 
+        const numrows = result.length;
+        //if no data
+        if(numrows == 0) {
+            res.status(500).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+
+app.get("/plants", function (req, res) {
+    const sql = "SELECT id, username, role FROM plant";
+    con.query(sql, function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+ 
+        const numrows = result.length;
+        //if no data
+        if(numrows == 0) {
+            res.status(500).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+
+app.get("/livestocks", function (req, res) {
+    const sql = "SELECT id, username, role FROM livestock";
+    con.query(sql, function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+ 
+        const numrows = result.length;
+        //if no data
+        if(numrows == 0) {
+            res.status(500).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
     });
 });
 
