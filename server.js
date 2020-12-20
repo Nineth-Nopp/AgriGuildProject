@@ -75,7 +75,54 @@ app.post("/login",function(req,res){
     });
 });
 
-//------------------ json call for datatable ---------------------
+
+//-------------user account function ---------------
+
+
+app.put("/user/update", (req, res) => {
+    const id = req.body.id;
+    const username = req.body.username;
+    const password = req.body.password;
+    const role = req.body.role;
+ 
+    const sql = "UPDATE user SET username = ?, password = ?, role = ? WHERE id = ?";
+ 
+    database.query(sql, [username, password, role, id], function(err, result) {
+       
+       if (err) {
+           console.log(err);
+           res.status(500).send("Database server error.");
+       } else {
+           if (result.affectedRows == 1) {
+               res.send("User has been updated.");
+           } else {
+               res.status(501).send("Error while updating user.");
+           }
+       }
+    });
+});
+
+app.delete("/user/:id", function(req,res){
+    const id = req.params.id;
+    const sql = "DELETE FROM user WHERE id=?";
+    con.query(sql,[id],function(err,result){
+        if(err){
+            console.log(err);
+            res.status(500).send("Database server error");
+        }
+        else{
+            if(result.affectedRows == 1){
+                res.send("Delete done");
+            }
+            else{
+                res.status(500).send("Delete error");
+            }
+        }
+    });
+});
+
+
+//------------------- json call for datatable ---------------------
 
 app.get("/users", function (req, res) {
     const sql = "SELECT id, username, role FROM user";
