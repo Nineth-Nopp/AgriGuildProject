@@ -48,16 +48,13 @@
 		.card-text {
 			height: 50px;
 		}
-        #editpro {
-            color: rgb(255, 255, 255);
-        }
-        #logout {
-            color: rgb(255, 255, 255);
-        }
-        a {
-            color: rgb(255, 255, 255);
-        }    
+		a {
+			color: rgb(255, 255, 255);
+		}
+		
+
 	</style>
+
 	<script>
 			 $(document).ready(function(){
 				$("#btnlog").click(function(){
@@ -66,30 +63,21 @@
 				$("#btnre").click(function(){
 					location.replace("./Register.html")
 				});
-				$("#calen").click(function(){
-					location.replace("./Scheduleconfirm.html")
-				});
-				$("#costcal").click(function(){
-					location.replace("./Guilding.html")
-				});
 				$("#logo").click(function(){
 					location.replace("./index.html")
 				});
 				$("#home").click(function(){
 					location.replace("./index.html")
 				});
-				$("#mi").click(function(){
+				$("#feature").click(function(){
+					location.replace("./user_featrue.html")
+				});
+				$("#moreinfo").click(function(){
 					location.replace("./MoreInformation.html")
 				});
-				$("#space").click(function(){
-					location.replace("./LandAnalyse.html")
-                });
-                $("#editpro").click(function(){
-					location.replace("./EditAccount.html")
-                });
-                $("#logout").click(function(){
-					location.replace("./index.html")
-                });
+				$("#history").click(function(){
+					location.replace("./ScheduleList.html")
+				});
 			});
 	</script>
 </head>
@@ -111,25 +99,23 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#">Team</a>
 					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Services</a>
-					   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#" id="costcal">Cost calculation</a> 
-							<a class="dropdown-item" href="#" id="space">Space management</a> 
-							<a class="dropdown-item" href="#" id="calen"> Calendar</a>
-							<a class="dropdown-item" href="#" id="mi">More information</a>
 					<li class="nav-item">
+						<a class="nav-link" href="#" id="feature" >Features</a>
+					</li>
 						<a class="nav-link" href="#">Contract</a>
 					</li>
+				</li>
+				<a class="nav-link" href="#" id="moreinfo">More information</a>
+			</li>
 				</ul>
 			</div>
-                <div class="dropdown">
-                    <div class="dropdown-content">
-                      <a href="#" id="editpro"><i class="fa fa-user-circle" aria-hidden="true"></i></i> Edit profile</a>
-                      <a href="#">|</a>
-                      <a href="#" id="logout" >Log out</a>
-                    </div>
-                  </div>
+			<div>
+				<a href="#" id="editpro"><i class="fa fa-user-circle" aria-hidden="true"></i></i> Edit profile</a>
+				<a href="#">|</a>
+				<a href="#" id="history" >Schedule List</a>
+				<a href="#">|</a>
+				<a href="#" id="logout" >Log out</a>
+			  </div>
 		</div>
 	</nav>
 	<!--- Image Slider -->
@@ -271,6 +257,7 @@
 				</div>			
 	</div>
 	<p></p>
+
 	<!--- Footer area-->
 	<div class="container-fluid "style="background-color: #45aa2c">
 		<footer class="footer-area">
