@@ -15,7 +15,6 @@
 
 <script>
     $(document).ready(function(){
-
         $("#forget").click(function(){
 		    location.replace("/recovery_PASSWORD")
         });
@@ -56,25 +55,29 @@
                     </div>
                     <div class="card-body">
                         <form>
+
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="username" id="txtusername">
-                                
+                                <input type="text" class="form-control" placeholder="username" id="txtusername">  
                             </div>
+
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-lock fa"></i></span>
                                 </div>
                                 <input type="password" class="form-control" placeholder="password" id="txtpassword">
                             </div>
+
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me
                             </div>
+
                             <div class="form-group">
                                 <input type="button" value="Login" class="btn float-right login_btn" id="btn_login">
                             </div>
+
                         </form>
                     </div>
                     <div class="card-footer">
