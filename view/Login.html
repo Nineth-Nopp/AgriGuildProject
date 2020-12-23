@@ -38,7 +38,7 @@
                 location.replace(response);               
             },
             error: function (xhr) {
-                alert("Your password incorrect!!");
+                alert(xhr.responseText);
             }
 });
         });
