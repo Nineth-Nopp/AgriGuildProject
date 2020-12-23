@@ -99,7 +99,7 @@ app.put("/user/update", (req, res) => {
 
     const sql = "UPDATE user SET username = ?, password = ?,name = ?,lastname = ?,email = ?,phone = ?,a WHERE id = ?";
 
-    database.query(sql, [username, password, name , lastname,email,phone,id], function (err, result) {
+    database.query(sql, [username, password, name, lastname, email, phone, id], function (err, result) {
 
         if (err) {
             console.log(err);
@@ -144,7 +144,7 @@ app.put("/livestock/update", (req, res) => {
     const fase3 = req.body.fase3;
     const sql = "UPDATE livestock SET name = ?, buy = ?,sell = ?,fase1 = ?,fase1 = ?,fase1 = ?  WHERE id = ?";
 
-    database.query(sql, [name, buy,sell,fase1,fase2,fase3,id], function (err, result) {
+    database.query(sql, [name, buy, sell, fase1, fase2, fase3, id], function (err, result) {
 
         if (err) {
             console.log(err);
@@ -177,6 +177,36 @@ app.delete("/livestock/:id", function (req, res) {
         }
     });
 });
+
+app.post("/livestock/add", function (req, res) {
+    const name = req.body.name
+    const buy = req.body.buy 
+    const sell = req.body.sell 
+    const fase1 = req.body.fase1
+    const fase2 = req.body.fase2
+    const fase3 = req.body.fase3
+
+        const sql = "INSERT INTO livestocks(name buy sell fase1 fase2 fase3) VALUE(?,?,?,?,?,?)";
+        con.query(sql[name, buy, sell, fase1, fase2, fase3], function (err, result, fields) {
+            if (err) {
+                console.error(err.message);
+                res.status(500).send("Database server error");
+                return
+            }
+            const numrows = result.affectedRows;
+            if (numrows != 1) {
+                console.error("Insert to DB failed");
+                res.status(500).send("Database server error");
+            }
+            else {
+                res.send("Insert Complete!")
+            }
+
+
+        });
+    });
+
+
 
 //------------------- json call for datatable ---------------------
 
