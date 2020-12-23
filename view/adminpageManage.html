@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="popper.min.js"></script>
+    
+
+        <script>
+            $(document).ready(function () {
+                
+    
+                $("#btnsignout").click(function () {
+                    window.location.replace("/login");
+                });
+
+                $("#btnManageUser").click(function () {
+                    window.location.replace("/admin_manage_user");
+                });
+                $("#btnManagePlant").click(function () {
+                    window.location.replace("/admin_manage_plant");
+                });
+                $("#btnManageLivestock").click(function () {
+                    window.location.replace("/admin_manage_livestock");
+                });
+            });
+        </script>
+
+    
+</head>
+
+<body>
+    <div class="container text-center">
+        <input type="button" class="btn btn-primary my-2" id="btnManageUser" value="Manage User"><p>
+        <input type="button" class="btn btn-primary my-2" id="btnManagePlant" value="Manage Plant"><p>
+        <input type="button" class="btn btn-primary my-2" id="btnManageLivestock" value="Manage Livestock"><p>
+        <input type="button" class="btn btn-outline-danger" id="btnsignout"value="Sign Out"><p></p>
+
+    </div>
+</body>
+
+</html>

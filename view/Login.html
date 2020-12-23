@@ -5,25 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/bootstrap.min.css" id="bootstrap-css">
-    <script src="../public/bootstrap.min.js"></script>
-    <script src="../public/jquery-3.5.1.min.js"></script>
-    <script src="../public/popper.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap.min.css" id="bootstrap-css">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../public/Login.css">
+    <link rel="stylesheet" href="Login.css">
 </head>
 
 <script>
     $(document).ready(function(){
-        $("#logo").click(function(){
-		    location.replace("/index.html")
-		});
-        $("#re").click(function(){
-		    location.replace("./Register.html")
-        });
+
         $("#forget").click(function(){
-		    location.replace("./recovery_PASSWORD.html")
+		    location.replace("/recovery_PASSWORD")
         });
         $("#btn_login").click(function(){
             const username =  $("#txtusername").val();
@@ -31,14 +25,15 @@
             
             $.ajax({
             type: "POST",
-            url: "/login",
-            data: {"username":username , "password":password} ,
+            url: "/api/login",
+            data: {"username":username , "password":password},
             
             success: function (response) {
-                location.replace(response);               
+                sessionStorage.user_id = response.user_id;
+                location.replace(response.url);               
             },
             error: function (xhr) {
-                alert("Your password incorrect!!");
+                alert(xhr.responseText);
             }
 });
         });
@@ -47,7 +42,7 @@
 <body>
     <nav class="navbar navbar-expand-md sticky-top" style="background-color:#45aa2c">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo" ></a>
+			<a class="navbar-brand" href="/"><img src="picture/logo_1_1.png" id="logo" ></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -84,7 +79,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center links">
-                            Don't have an account?<a href="#" id="re">Register</a>
+                            Don't have an account?<a href="/register" id="re">Register</a>
                         </div>
                         <div class="d-flex justify-content-center">
                             <a href="#" id="forget">Forgot your password?</a>

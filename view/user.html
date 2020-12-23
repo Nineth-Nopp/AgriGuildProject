@@ -5,13 +5,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Document</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="popper.min.js"></script>
+	<script src="bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link href="style.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+	
 	<style>
 		img {
 			width: 100%;
@@ -57,32 +56,33 @@
 
 	<script>
 			 $(document).ready(function(){
-				$("#btnlog").click(function(){
-					location.replace("./Login.html")
-				});
-				$("#btnre").click(function(){
-					location.replace("./Register.html")
-				});
+				
+				if (sessionStorage.user_id == undefined || sessionStorage.user_id == "undefined") {
+					alert("You are not member yet, Please login first.");
+					window.location.replace("/login");
+				}
+
 				$("#logo").click(function(){
-					location.replace("./index.html")
+					location.replace("/user");
 				});
 				$("#home").click(function(){
-					location.replace("./index.html")
+					location.replace("/user");
 				});
 				$("#feature").click(function(){
-					location.replace("./user_featrue.html")
+					location.replace("/featrue")
 				});
 				$("#moreinfo").click(function(){
-					location.replace("./MoreInformation.html")
+					location.replace("/MoreInformation")
 				});
 				$("#history").click(function(){
-					location.replace("./ScheduleList.html")
+					location.replace("/ScheduleList")
 				});
 				$("#editpro").click(function(){
-					location.replace("./EditAccount.html")
+					location.replace("/edit")
 				});
 				$("#logout").click(function(){
-					location.replace("./index.html")
+					sessionStorage.user_id = undefined;
+					location.replace("/")
 				});
 
 			});
@@ -94,20 +94,20 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-md sticky-top" style="background-color: #45aa2c">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<a class="navbar-brand" href="/user"><img src="picture/logo_1_1.png" id="logo"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="#" id="home">Home</a>
+						<a class="nav-link" href="/user" id="home">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Team</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#" id="feature" >Features</a>
+						<a class="nav-link" href="/featrue" id="feature" >Features</a>
 					</li>
 						<a class="nav-link" href="#">Contract</a>
 					</li>
@@ -134,16 +134,16 @@
 		</ul>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../picture/6.jpg">
+				<img src="picture/6.jpg">
 				<div class="carousel-caption">
 					<h1 class="display-2">Agricultrue Guide</h1>
 				</div>
 			</div>
 			<div class="carousel-item">
-				<img src="../picture/7.jpg">
+				<img src="picture/7.jpg">
 			</div>
 			<div class="carousel-item">
-				<img src="../picture/9.jpg">
+				<img src="picture/9.jpg">
 			</div>
 		</div>
 	</div>	
@@ -164,7 +164,7 @@
 				<div class="row">
 					<div class="col-md-3">
 						<div class="card">
-							<img class="card-img-top" alt="Bootstrap Thumbnail First" src="../picture/calculator-basic.png" />
+							<img class="card-img-top" alt="Bootstrap Thumbnail First" src="picture/calculator-basic.png" />
 							<div class="card-block">
 								<h2 class="card-title">
 									Cost calculation
@@ -177,7 +177,7 @@
 					</div>
 					<div class="col-md-3">
 						<div class="card">
-							<img class="card-img-top" alt="Bootstrap Thumbnail Second" src="../picture/Area.JPG" />
+							<img class="card-img-top" alt="Bootstrap Thumbnail Second" src="picture/Area.JPG" />
 							<div class="card-block">
 								<h2 class="card-title">
 									Space management
@@ -190,7 +190,7 @@
 					</div>
 					<div class="col-md-3">
 						<div class="card">
-							<img class="card-img-top" alt="Bootstrap Thumbnail Third" src="../picture/Calender.jpg" />
+							<img class="card-img-top" alt="Bootstrap Thumbnail Third" src="picture/Calender.jpg" />
 							<div class="card-block">
 								<h2 class="card-title">
 									Calendar
@@ -203,7 +203,7 @@
 					</div>
 					<div class="col-md-3">
 						<div class="card">
-							<img class="card-img-top" alt="Bootstrap Thumbnail Fouth" src="../picture/information.jpg" />
+							<img class="card-img-top" alt="Bootstrap Thumbnail Fouth" src="picture/information.jpg" />
 							<div class="card-block">
 								<h2 class="card-title">
 									More information
@@ -230,7 +230,7 @@
 							<div class="row">
 								<div class="col-md-4">
 									<div class="card">
-										<img class="card-img-top" src="../picture/c2.png" />
+										<img class="card-img-top" src="picture/c2.png" />
 										<div class="card-block">
 											<h2 class="card-text">
 												Noppanan Khamduang
@@ -240,7 +240,7 @@
 								</div>
 								<div class="col-md-4">
 									<div class="card">
-										<img class="card-img-top" src="../picture/c1.png" />
+										<img class="card-img-top" src="picture/c1.png" />
 										<div class="card-block">
 											<h2 class="card-text">
 												Paramet Pechapo
@@ -250,7 +250,7 @@
 								</div>
 								<div class="col-md-4">
 									<div class="card">
-										<img class="card-img-top" src="../picture/c3.jpg" />
+										<img class="card-img-top" src="picture/c3.jpg" />
 										<div class="card-block">
 											<h2 class="card-text">
 												Sahapol Polyiam
