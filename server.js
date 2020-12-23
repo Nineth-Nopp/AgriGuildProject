@@ -133,6 +133,7 @@ app.delete("/user/:id", function (req, res) {
     });
 });
 
+//========livestock function==========
 
 app.put("/livestock/update", (req, res) => {
     const id = req.body.id;
@@ -188,6 +189,82 @@ app.post("/livestock/add", function (req, res) {
 
         const sql = "INSERT INTO livestocks(name buy sell fase1 fase2 fase3) VALUE(?,?,?,?,?,?)";
         con.query(sql[name, buy, sell, fase1, fase2, fase3], function (err, result, fields) {
+            if (err) {
+                console.error(err.message);
+                res.status(500).send("Database server error");
+                return
+            }
+            const numrows = result.affectedRows;
+            if (numrows != 1) {
+                console.error("Insert to DB failed");
+                res.status(500).send("Database server error");
+            }
+            else {
+                res.send("Insert Complete!")
+            }
+
+
+        });
+    });
+
+//------------plant function-------------
+
+app.put("/plant/update", (req, res) => {
+    const id = req.body.id;
+    const name = req.body.name;
+    const buy = req.body.buy;
+    const sell = req.body.sell;
+    const product = req.body.product;
+    const fase1 = req.body.fase1;
+    const fase2 = req.body.fase2;
+    const fase3 = req.body.fase3;
+    const sql = "UPDATE plant SET name = ?, buy = ?,sell = ?,product = ?,fase1 = ?,fase1 = ?,fase1 = ?  WHERE id = ?";
+
+    database.query(sql, [name, buy, sell, product ,fase1, fase2, fase3, id], function (err, result) {
+
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database server error.");
+        } else {
+            if (result.affectedRows == 1) {
+                res.send("Livestock has been updated.");
+            } else {
+                res.status(501).send("Error while updating livestock.");
+            }
+        }
+    });
+});
+
+app.delete("/plant/:id", function (req, res) {
+    const id = req.params.id;
+    const sql = "DELETE FROM plant WHERE id=?";
+    con.query(sql, [id], function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database server error");
+        }
+        else {
+            if (result.affectedRows == 1) {
+                res.send("Delete done");
+            }
+            else {
+                res.status(500).send("Delete error");
+            }
+        }
+    });
+});
+
+app.post("/plant/add", function (req, res) {
+    const name = req.body.name
+    const buy = req.body.buy 
+    const sell = req.body.sell 
+    const product = req.body.product;
+    const fase1 = req.body.fase1
+    const fase2 = req.body.fase2
+    const fase3 = req.body.fase3
+
+        const sql = "INSERT INTO plant(name buy sell product fase1 fase2 fase3) VALUE(?,?,?,?,?,?)";
+        con.query(sql[name, buy, sell,product, fase1, fase2, fase3], function (err, result, fields) {
             if (err) {
                 console.error(err.message);
                 res.status(500).send("Database server error");
