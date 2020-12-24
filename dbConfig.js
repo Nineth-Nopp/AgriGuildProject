@@ -1,9 +1,8 @@
-  
 const config = {
     host    : 'localhost',
     user    : 'root',
     password: '',
-    database: 'agriguild'
+    database: 'AgriguildDB'
   };
    
 module.exports = config;
