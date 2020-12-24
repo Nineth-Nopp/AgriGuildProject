@@ -5,40 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManagePlant</title>
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.6.1/sweetalert2.min.css">
 
-    <script src="jquery.min.js"></script>
-    <script src="popper.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-
-    <script src="jquery.dataTables.min.js"></script>
-    <script src="dataTables.bootstrap4.min.js"></script>
-    <script src="bootbox.min.js"></script>
-    <script src="dataTables.responsive.min.js"></script>
-    <script src="responsive.bootstrap4.min.js"></script>
-    <script src="sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.6.1/sweetalert2.min.js"></script>
     <script>
         $(document).ready(function () {
 
             var rowID;
             // data
-            var dataSet = [];
-
-            $.ajax({
-                type: "GET",
-                async: false,
-                url: "/api/get_all_plants",
-                dataSrc: "",
-                success: function (response) {
-                    dataSet = [...response];
-                },
-                error: function (xhr) {
-                    Swal.fire(xhr.responseText);
+            var dataSet = [
+                {
+                    "id": "001",
+                    "name": "ข้าวโพด",
+                    "species": "ใบเลี้ยงเดี่ยว",
+                    "purchasePrice": "10บ./กก.",
+                    "sellingPrice": "9.00บ./กก.",
+                    "parenting": "ระยะเวลาเลี้ยง 4 – 5 เดือน/รุ่น",
+                    "water": "ตลอดการปลูก ประมาณ 350-600 มิลลิเมตร สำหรับครั้งแรก 30-40 มิลลิเมตร",
+                    "area": "200 ตารางวาขึ้นไป",
+                    "food": "1. ปุ๋ยรองพื้น ใช้ปุ๋ยสูตร 16-20-0 หรือ 15-15-15 ในปริมาณ 20 กิโลกรัม/ไร่ 2. ปุ๋ยยูเรีย เมื่อข้าวโพดมีอายุ 25-30 วัน โดยใช้ปุ๋ยยูเรีย 46-0-0 ในปริมาณ 20-25 กิโลกรัม/ไร่",
                 }
-            });
+            ];
 
             // data table
             let table = $("#myTable").DataTable({
@@ -46,12 +53,15 @@
                 deferRender: true,      //if large data, use this option
                 data: dataSet,
                 columns: [
-                    { data: "plant_id", title: "ID" },
-                    { data: "plant_name", title: "ชื่อ" },
-                    { data: "purchasePrice", title: "ราคาซื้อ (กก./บาท)" },
-                    { data: "sellingPrice", title: "ราคาขาย (กก./บาท)" },
-                    { data: "plant_time", title: "ระยะเวลาที่ใช้ (เดือน)" },
-                    { data: "plant_area", title: "พื้นที่ที่ใช้ (ไร่)" },
+                    { data: "id", title: "ID" },
+                    { data: "name", title: "ชื่อ" },
+                    { data: "species", title: "ชนิดพันธุ์" },
+                    { data: "purchasePrice", title: "ราคาซื้อ" },
+                    { data: "sellingPrice", title: "ราคาขาย" },
+                    { data: "water", title: "ปริมาณน้ำที่ใช้" },
+                    { data: "area", title: "พื้นที่ที่ใช้" },
+                    { data: "parenting", title: "ระยะเวลาการเลี้ยงดู" },
+                    { data: "food", title: "ประเภทอาหาร" },
                     { title: "Action", defaultContent: "<div class='text-center'><button class='btn btn-danger'>Delete</button>  <button class='btn btn-warning'>Edit</button></div>" }
                 ]
             });
@@ -73,12 +83,19 @@
                 // get current user's interacting row
                 rowID = table.row(currentRow).index();
 
-                $("#txtID").val(data.plant_id);
-                $("#txtName").val(data.plant_name);
+                $("#txtID").val(data.id);
+                $("#txtName").val(data.name);
+                if (data.species == "Monocot") {
+                    $("#radMonocot").prop("checked", true);
+                } else {
+                    $("#radDicotyledon").prop("checked", true);
+                }
                 $("#txtPurchasePrice").val(data.purchasePrice);
                 $("#txtSellingPrice").val(data.sellingPrice);
-                $("#txtTime").val(data.plant_time);
-                $("#txtArea").val(data.plant_area);
+                $("#txtParenting").val(data.parenting);
+                $("#txtWater").val(data.water);
+                $("#txtArea").val(data.area);
+                $("#txtFood").val(data.food);
 
                 // show modal
                 $("#modalEdit").modal("show");
@@ -89,24 +106,39 @@
             $("#btnEditSave").click(function () {
 
                 const name = $("#txtName").val();
+                const species = (function () {
+                    if ($("#radMonocot").is(":checked")) {
+                        return "ใบเลี้ยงเดี่ยว";
+                    } else {
+                        return "ใบเลี้ยงคู่";
+                    }
+                })();
                 const purchasePrice = $("#txtPurchasePrice").val();
                 const sellingPrice = $("#txtSellingPrice").val();
-                const time = $("#txtTime").val();
-                const area = $("#txtArea").val();;
+                const parenting = $("#txtParenting").val();
+                const water = $("#txtWater").val();
+                const area = $("#txtArea").val();
+                const food = $("#txtFood").val();
 
                 dataSet[rowID].name = name;
+                dataSet[rowID].species = species;
                 dataSet[rowID].purchasePrice = purchasePrice;
                 dataSet[rowID].sellingPrice = sellingPrice;
-                dataSet[rowID].time = time;
+                dataSet[rowID].parenting = parenting;
+                dataSet[rowID].water = water;
                 dataSet[rowID].area = area;
+                dataSet[rowID].food = food;
 
                 // -------------------------------
                 let temp = table.row(rowID).data();
                 temp.name = name;
+                temp.species = species;
                 temp.purchasePrice = purchasePrice;
                 temp.sellingPrice = sellingPrice;
-                temp.time = time;
+                temp.parenting = parenting;
+                temp.water = water;
                 temp.area = area;
+                temp.food = food;
                 table.row(rowID).data(temp).invalidate();
 
                 // Easier way but not efficient.
@@ -168,8 +200,10 @@
                 $("#radMonocot_add").prop("checked", true);
                 $("#txtPurchasePrice_add").val("");
                 $("#txtSellingPrice_add").val("");
-                $("#txtTime_add").val("");
+                $("#txtParenting_add").val("");
+                $("#txtWater_add").val("");
                 $("#txtArea_add").val("");
+                $("#txtFood_add").val("");
 
 
                 // poor little modal
@@ -210,10 +244,13 @@
                     dataSet.push({
                         "id": id,
                         "name": $("#txtName_add").val(),
+                        "species": $("#radMonocot_add").is(":checked") ? "Monocot" : "ใบเลี้ยงคู่",
                         "purchasePrice": $("#txtPurchasePrice_add").val(),
                         "sellingPrice": $("#txtSellingPrice_add").val(),
-                        "time": $("#txtTime_add").val(),
+                        "parenting": $("#txtParenting_add").val(),
+                        "water": $("#txtWater_add").val(),
                         "area": $("#txtArea_add").val(),
+                        "food": $("#txtFood_add").val(),
                     });
 
                     $("#modalAdd").modal('hide');
@@ -224,7 +261,7 @@
 
             });
             $("#btnback").click(function () {
-                    window.location.replace("/adminpage_manage");
+                    window.location.replace("adminpageManage.html");
                 });
 
         });
@@ -257,10 +294,14 @@
 
                         <input type="text" class="form-control mb-2" id="txtID" placeholder="ID" disabled>
                         <input type="text" class="form-control mb-2" id="txtName" placeholder="Name">
+                        <input type="radio" name="species" id="radMonocot" value="Monocot"> ใบเลี้ยงเดี่ยว
+                        <input type="radio" name="species" id="radDicotyledon" value="Dicotyledon"> ใบเลี้ยงคู่
                         <input type="text" class="form-control mt-2" id="txtPurchasePrice" placeholder="PurchasePrice">
                         <input type="text" class="form-control mt-2" id="txtSellingPrice" placeholder="SellingPrice">
-                        <input type="text" class="form-control mt-2" id="txtTime" placeholder="Time">
+                        <input type="text" class="form-control mt-2" id="txtParenting" placeholder="Parenting">
+                        <input type="text" class="form-control mt-2" id="txtWater" placeholder="Water">
                         <input type="text" class="form-control mt-2" id="txtArea" placeholder="Area">
+                        <input type="text" class="form-control mt-2" id="txtFood" placeholder="Food">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -285,10 +326,14 @@
 
                         <input type="text" class="form-control mb-2" id="txtID_add" placeholder="ID">
                         <input type="text" class="form-control mb-2" id="txtName_add" placeholder="Name">
+                        <input type="radio" name="species" id="radMonocot_add" value="Monocot"> ใบเลี้ยงเดี่ยว
+                        <input type="radio" name="species" id="radDicotyledon_add" value="Dicotyledon"> ใบเลี้ยงคู่
                         <input type="text" class="form-control mt-2" id="txtPurchasePrice_add" placeholder="PurchasePrice">
                         <input type="text" class="form-control mt-2" id="txtSellingPrice_add" placeholder="SellingPrice">
-                        <input type="text" class="form-control mt-2" id="txtTime_add" placeholder="Time">
+                        <input type="text" class="form-control mt-2" id="txtParenting_add" placeholder="Parenting">
+                        <input type="text" class="form-control mt-2" id="txtWater_add" placeholder="Water">
                         <input type="text" class="form-control mt-2" id="txtArea_add" placeholder="Area">
+                        <input type="text" class="form-control mt-2" id="txtFood_add" placeholder="Food">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

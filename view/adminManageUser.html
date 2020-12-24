@@ -5,44 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage User</title>
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.6.1/sweetalert2.min.css">
 
-    <script src="jquery.min.js"></script>
-    <script src="popper.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-
-    <script src="jquery.dataTables.min.js"></script>
-    <script src="dataTables.bootstrap4.min.js"></script>
-    <script src="bootbox.min.js"></script>
-    <script src="dataTables.responsive.min.js"></script>
-    <script src="responsive.bootstrap4.min.js"></script>
-    <script src="sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.6.1/sweetalert2.min.js"></script>
     <script>
         $(document).ready(function () {
-
-
+            
+            
             var rowID;
             // data
-            var dataSet = [];
-
-            
-
-            $.ajax({
-                type: "GET",
-                async: false,
-                url: "/api/get_all_users",
-                dataSrc: "",
-                success: function (response) {
-                    dataSet = [...response];
-                },
-                error: function (xhr) {
-                    Swal.fire(xhr.responseText);
+            var dataSet = [
+                {
+                    "id": "001",
+                    "name": "สหพล พลเยี่ยม",
+                    "username": "Sahapol",
+                    "email": "6231302017@lamduan.mfu.ac.th",
+                    "sellingPrice": "099999999",
+                    
                 }
-            });
-            
+            ];
 
             // data table
             let table = $("#myTable").DataTable({
@@ -50,15 +51,55 @@
                 deferRender: true,      //if large data, use this option
                 data: dataSet,
                 columns: [
-                    { data: "user_id", title: "ID" },
-                    { data: "name", title: "Name" },
-                    { data: "lastname", title: "Lastname" },
+                    { data: "id", title: "ID" },
+                    { data: "name", title: "Name-lastname" },
                     { data: "username", title: "Username" },
                     { data: "email", title: "E-mail" },
-                    { data: "phone", title: "Phone" },
+                    { data: "sellingPrice", title: "Phone" },
                     { title: "Action", defaultContent: "<div class='text-center'><button class='btn btn-danger'>Delete</button>  <button class='btn btn-warning'>Edit</button></div>" }
                 ]
             });
+
+            // getUser();
+
+
+            // function getUser() {
+            // //get users from DB
+            //     $.ajax({
+            //         method: "GET",
+            //         url: "/users"
+            //     }).done(function (dataSet, state, xhr) {
+            //         //To show DB recordset in DataTable, DB field must matches with DataTable's columns.data
+            //         //modify retrieved JSON data only for some fields    
+            //         for (let i = 0; i < dataSet.length; i++) {
+            //             dataSet[i].number = i + 1;
+            //             dataSet[i].role = (dataSet[i].role == 1 ? "Admin" : "User");
+            //         }
+
+            //         //clear DataTable
+            //         tableUser.clear();
+            //         //display modified JSON in DataTable
+            //         tableUser.rows.add(dataSet).draw();
+            //     }).fail(function (xhr, state, error) {
+            //         //get data failed
+            //         alert(xhr.responseText);
+            //     });
+            // }
+
+            // function deleteUser(id, currentRow) {
+            //     $.ajax({
+            //         type: "DELETE",
+            //         url: "/user/" + id,
+            //     }).done(function (data, state, xhr) {
+            //         Swal.fire(data);
+
+            //         // Update table
+            //         tableUser.row(currentRow).remove().draw(false);
+
+            //     }).fail(function(xhr, state) {
+            //         Swal.fire(xhr.responseText);
+            //     });
+            // }
 
             // Edit function
             $("#myTable tbody").on("click", ".btn-warning", function () {
@@ -77,11 +118,11 @@
                 // get current user's interacting row
                 rowID = table.row(currentRow).index();
 
-                $("#txtID").val(data.user_id);
+                $("#txtID").val(data.id);
                 $("#txtName").val(data.name);
                 $("#txtUsername").val(data.username);
                 $("#txtEmail").val(data.email);
-                $("#txtPhone").val(data.phone);
+                $("#txtSellingPrice").val(data.sellingPrice);
 
                 // show modal
                 $("#modalEdit").modal("show");
@@ -94,21 +135,21 @@
                 const name = $("#txtName").val();
                 const username = $("#txtUsername").val();
                 const email = $("#txtEmail").val();
-                const phone = $("#txtPhone").val();
-
+                const sellingPrice = $("#txtSellingPrice").val();
+                
 
                 dataSet[rowID].name = name;
                 dataSet[rowID].username = username;
                 dataSet[rowID].email = email;
-                dataSet[rowID].phone = phone;
-
+                dataSet[rowID].sellingPrice = sellingPrice;
+                
 
                 // -------------------------------
                 let temp = table.row(rowID).data();
                 temp.name = name;
                 temp.username = username;
                 temp.email = email;
-                temp.phone = phone;
+                temp.sellingPrice = sellingPrice;
                 table.row(rowID).data(temp).invalidate();
 
                 // Easier way but not efficient.
@@ -161,8 +202,8 @@
             });
 
             $("#btnback").click(function () {
-                window.location.replace("/adminpage_manage");
-            });
+                    window.location.replace("adminpageManage.html");
+                });
         });
     </script>
 </head>
@@ -187,17 +228,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>ID</p>
-                        <input type="text" class="form-control mb-2" id="txtID" placeholder="ID" disabled>
-                        <p>Name</p>
-                        <input type="text" class="form-control mb-2" id="txtName" placeholder="Name">
-                        <p>Username</p>
-                        <input type="text" class="form-control mb-2" id="txtUsername" placeholder="Username" disabled>
-                        <p>Email</p>
-                        <input type="text" class="form-control mt-2" id="txtEmail" placeholder="Email">
-                        <p>Phone</p>
-                        <input type="text" class="form-control mt-2" id="txtPhone" placeholder="Phone">
 
+                        <input type="text" class="form-control mb-2" id="txtID" placeholder="ID" disabled>
+                        <input type="text" class="form-control mb-2" id="txtName" placeholder="Name">
+                        <input type="text" class="form-control mb-2" id="txtUsername" placeholder="Username">
+                        <input type="text" class="form-control mt-2" id="txtEmail" placeholder="Email">
+                        <input type="text" class="form-control mt-2" id="txtSellingPrice" placeholder="SellingPrice">
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -208,8 +245,7 @@
         </div>
     </div>
     <p></p>
-    <input type="button" class="btn btn-outline-primary" id="btnback" value="Back">
-    <p></p>
+    <input type="button" class="btn btn-outline-primary" id="btnback"value="Back"><p></p>
 
 </body>
 
