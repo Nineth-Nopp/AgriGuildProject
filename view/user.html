@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Document</title>
 	<link rel="stylesheet" href="bootstrap.min.css">
-	<script src="jquery-3.5.1.min.js"></script>
+	<script src="jquery.min.js"></script>
 	<script src="popper.min.js"></script>
 	<script src="bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -47,29 +47,45 @@
 		.card-text {
 			height: 50px;
 		}
+		a {
+			color: rgb(255, 255, 255);
+		}
+		
 
 	</style>
 
 	<script>
 			 $(document).ready(function(){
-				$("#btnlog").click(function(){
-					location.replace("/login");
-				});
-				$("#btnre").click(function(){
-					location.replace("/Register")
-				});
+				
+				if (sessionStorage.user_id == undefined || sessionStorage.user_id == "undefined") {
+					alert("You are not member yet, Please login first.");
+					window.location.replace("/login");
+				}
+
 				$("#logo").click(function(){
-					location.replace("/")
+					location.replace("/user");
 				});
 				$("#home").click(function(){
-					location.replace("/")
+					location.replace("/user");
 				});
 				$("#feature").click(function(){
-					location.replace("./user_featrue.html")
+					location.replace("/featrue")
 				});
 				$("#moreinfo").click(function(){
 					location.replace("/MoreInformation")
 				});
+				$("#history").click(function(){
+					location.replace("/ScheduleList")
+				});
+				$("#editpro").click(function(){
+					location.replace("/edit")
+				});
+				$("#logout").click(function(){
+					sessionStorage.user_id = undefined;
+					alert(" Do you want to logout?");
+					location.replace("/")
+				});
+
 			});
 	</script>
 </head>
@@ -79,14 +95,14 @@
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-md sticky-top" style="background-color: #45aa2c">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img src="picture/logo_1_1.png" id="logo"></a>
+			<a class="navbar-brand" href="/user"><img src="picture/logo_1_1.png" id="logo"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="#" id="home">Home</a>
+						<a class="nav-link" href="/user" id="home">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Team</a>
@@ -94,18 +110,20 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/featrue" id="feature" >Features</a>
 					</li>
-					<li class="nav-item">
 						<a class="nav-link" href="#">Contract</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#" id="moreinfo">More information</a>
-					</li>
+				</li>
+				<a class="nav-link" href="#" id="moreinfo">More information</a>
+			</li>
 				</ul>
 			</div>
-			<div class="col-xs-12">
-				<a href="#"><button type="button" class="btn btn-warning" id="btnlog">Login</button></a>
-				<a href="#"><button type="button" class="btn btn-outline-warning" id="btnre">Register</button></a>
-			</div>
+			<div>
+				<a href="#" id="editpro"><i class="fa fa-user-circle" aria-hidden="true"></i></i> Edit profile</a>
+				<a href="#">|</a>
+				<a href="#" id="history" >Schedule List</a>
+				<a href="#">|</a>
+				<a href="#" id="logout" >Log out</a>
+			  </div>
 		</div>
 	</nav>
 	<!--- Image Slider -->

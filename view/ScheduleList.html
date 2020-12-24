@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule list</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
     <style>
      .nav-link{
             color: rgb(255, 255, 255);
@@ -32,10 +32,11 @@
                 cardTemp = cardTemp + `<h4 class="card-title">${info[i].name}</h4><p class="card-text">${info[i].info}</p></div><button class="btn btn-warning" id='btnview${i}' >VIEW</button></div>`
             }
             $("#scherduleList").html(cardTemp);
+            
             $("#logo").click(function(){
-		        location.replace("./index.html")
+                location.replace("/user")
+            });
 		});
-    });
     </script>
 </head>
 

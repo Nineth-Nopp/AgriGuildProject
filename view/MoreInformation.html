@@ -5,13 +5,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Document</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="jquery.min.js"></script>
+	<script src="popper.min.js"></script>
+	<script src="bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 	<link href="style.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
 	<style>
 		
 		.nav-link{
@@ -22,23 +21,8 @@
 
 	<script>
 			 $(document).ready(function(){
-				$("#btnlog").click(function(){
-					location.replace("./Login.html")
-				});
-				$("#btnre").click(function(){
-					location.replace("./Register.html")
-				});
-				$("#calen").click(function(){
-					location.replace("./Scheduleconfirm.html")
-				});
-				$("#costcal").click(function(){
-					location.replace("./Guilding.html")
-				});
 				$("#logo").click(function(){
-					location.replace("./index.html")
-				});
-				$("#home").click(function(){
-					location.replace("./index.html")
+					location.replace("/user")
 				});
 			});
 	</script>
@@ -47,7 +31,7 @@
 <body>
 	<nav class="navbar navbar-expand-md sticky-top " style="background-color: #45aa2c">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo"></a>
+			<a class="navbar-brand" href="#"><img src="picture/logo_1_1.png" id="logo"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>

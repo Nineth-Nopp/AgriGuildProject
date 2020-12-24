@@ -5,13 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agriculture Guilding</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+    <script src="jquery.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css ">
+    <script src="pagination.min.js"></script>
+    <link rel="stylesheet" href="pagination.css ">
+
+    <script src="jquery.dataTables.min.js"></script>
+    <script src="dataTables.bootstrap4.min.js"></script>
+    <script src="bootbox.min.js"></script>
+    <script src="dataTables.responsive.min.js"></script>
+    <script src="responsive.bootstrap4.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+
     <style>
         input[type=text] {
             text-align: center;
@@ -20,29 +33,145 @@
             margin: 8px 0;
             box-sizing: border-box;
         }
-        .nav-link{
+
+        .nav-link {
             color: rgb(255, 255, 255);
         }
 
         body {
             background-color: #9ac48e;
         }
-       
     </style>
     <script>
-        $(document).ready(function(){
-            $("#btnCancel").click(function(){
-                location.replace("./index.html")
+        $(document).ready(function () {
+
+            function checkInputs() {
+                if ($("#txtBudget").val() == "" || $("#txtAcre").val() == "") {
+                    return false;
+
+                } else {
+                    if (isNaN($("#txtBudget").val()) || isNaN($("#txtAcre").val())) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+
+            }
+
+            let table = $("#tableCrop");
+
+            function updateCrop(dataSet) {
+                $("#liveTableWrapper").hide();
+                $("#cropTableWrapper").show();
+                $("#tableCrop").DataTable({
+                    bDestroy: true,
+                    responsive: true,       //for responsive column display
+                    deferRender: true,      //if large data, use this option
+                    data: dataSet,
+                    columns: [
+                        { data: "plant_id", title: "ID" },
+                        { data: "plant_name", title: "ชื่อ" },
+                        { data: "purchasePrice", title: "ราคาซื้อ (กก./บาท)" },
+                        { data: "sellingPrice", title: "ราคาขาย (กก./บาท)" },
+                        { data: "plant_time", title: "ระยะเวลาในการปลูก (เดือน)" },
+                        { data: "plant_area", title: "พื้นที่ (ไร่)" }
+                    ]
+                });
+
+            }
+
+            function updateLivestock(dataSet) {
+                $("#cropTableWrapper").hide();
+                $("#liveTableWrapper").show();
+                $("#tableLive").DataTable({
+                    bDestroy: true,
+                    responsive: true,       //for responsive column display
+                    deferRender: true,      //if large data, use this option
+                    data: dataSet,
+                    columns: [
+                        { data: "livestock_id", title: "ID" },
+                        { data: "livestock_name", title: "ชื่อ" },
+                        { data: "gender", title: "เพศ" },
+                        { data: "purchasePrice", title: "ราคาซื้อ (กก./บาท)" },
+                        { data: "sellingPrice", title: "ราคาขาย (กก./บาท)" },
+                        { data: "livestock_time", title: "ระยะเวลาในการเลี้ยง (เดือน)" },
+                        { data: "livestock_area", title: "พื้นที่ (ไร่)" }
+                    ]
+                });
+
+            }
+
+            $("#logo").click(function () {
+                location.replace("/user")
             });
-            $("btnProcess").click(function(){
-                location.replace("./Schedal confirm.html")
+
+            $("#crop").click(function () {
+                if (checkInputs()) {
+                    console.log(checkInputs());
+                    const budget = $("#txtBudget").val();
+                    const acre = $("#txtAcre").val();
+
+                    $.ajax({
+                        type: "GET",
+                        url: `/api/get_crop_by/${budget}/${acre}`,
+                        // data: { budget: budget, acre: acre },
+                        success: function (response) {
+                            console.log(response);
+                            updateCrop(response);
+                        },
+                        error: function (xhr) {
+                            Swal.fire(xhr.responseText);
+                        }
+                    });
+
+                } else {
+                    Swal.fire("Inputs invalid!");
+                }
+
             });
-            $("#logo").click(function(){
-					location.replace("./index.html")
-				});
-				$("#home").click(function(){
-					location.replace("./index.html")
-				});
+
+            $("#livestock").click(function () {
+                if (checkInputs()) {
+                    console.log(checkInputs());
+                    const budget = $("#txtBudget").val();
+                    const acre = $("#txtAcre").val();
+
+                    $.ajax({
+                        type: "GET",
+                        url: `/api/get_livestock_by/${budget}/${acre}`,
+                        // data: { budget: budget, acre: acre },
+                        success: function (response) {
+                            console.log(response);
+                            updateLivestock(response);
+                        },
+                        error: function (xhr) {
+                            Swal.fire(xhr.responseText);
+                        }
+                    });
+
+                } else {
+                    Swal.fire("Inputs invalid!");
+                }
+
+            });
+
+            $("#btnProcess").click(function () {
+                const budget = $("#txtBudget").val();
+                const acre = $("#txtAcre").val
+                $.ajax({
+                    type: "POST",
+                    url: "/guilding",
+                    data: { "budget": budget, "acre": acre },
+                    success: function (response) {
+                        location.replace(response);
+                    },
+                    error: function (xhr) {
+                        alert(xhr.responseText);
+                    }
+                });
+            });
+
         });
     </script>
 
@@ -50,38 +179,46 @@
 
 <body>
     <nav class="navbar navbar-expand-md" style="background-color: #45aa2c">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img src="../picture/logo_1_1.png" id="logo"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	</nav>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="picture/logo_1_1.png" id="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
     <p></p>
     <div class="container" style="text-align: center;">
         <div class="jumbotron">
             <h1 class="display-3">Agriculture Guilding</h1>
             <p class="lead">Input your budget and land to see your Guilde !</p>
             <hr class="my-3">
-            <input type="text" clss="form-control" placeholder="Budget(bath)" name="" id="txtBudget">
+            <input type="text" clss="form-control" placeholder="Budget(bath)" id="txtBudget">
             <div class="alert alert-danger" role="alert" hidden>
                 <strong id="alertBudget">Wrong input</strong>
             </div>
-            <input type="text" clss="form-control " placeholder="Acre" name="" id="txtAcre">
+            <input type="text" clss="form-control " placeholder="Acre" id="txtAcre">
             <div class="alert alert-danger" role="alert" hidden>
                 <strong id="alertAcre">Wrong input</strong>
             </div>
             <hr class="my-3">
-            <button class="btn btn-success mr-4 btn-lg">Crops</button> 
+            <button class="btn btn-success mr-4 btn-lg" id="crop">Crops</button>
             or
-            <button class="btn btn-warning ml-4 btn-lg">Livestock</button>
-        </div>
-        <div class="col h1" id="ListOfData">
+            <button class="btn btn-warning ml-4 btn-lg" id="livestock">Livestock</button>
+            <hr class="my-3">
 
-            <div style="text-align:right;">
-                <button class="btn btn-secondary btn-lg" id="btnCancel"> Cancel</button>
-                <button class="btn btn-primary btn-lg" id="btnProcess"> Process</button>
+            <div id="cropTableWrapper">
+                <table class="mt-5 table table-striped table-light" id="tableCrop">
+
+                </table>
             </div>
+
+            <div id="liveTableWrapper">
+                <table class="mt-5 table table-striped table-light" id="tableLive">
+
+                </table>
+            </div>
+            
+            
         </div>
     </div>
 </body>
